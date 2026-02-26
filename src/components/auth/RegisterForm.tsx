@@ -2,6 +2,9 @@
 // Reusable form components and RegisterForm for the PetAd register page
 
 import { useState, type InputHTMLAttributes } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthModal } from "../ui/authModal";
+import { IdentityVerificationModal } from "../ui/IdentityVerificationModal";
 
 // ─── Reusable: FormInput ──────────────────────────────────────────────────────
 
@@ -287,6 +290,9 @@ export function RegisterForm() {
 
   const [errors, setErrors] = useState<RegisterFormErrors>({});
   const [isLoading, setIsLoading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showIdentityModal, setShowIdentityModal] = useState(false);
+  const navigate = useNavigate();
 
   const validate = (): boolean => {
     const newErrors: RegisterFormErrors = {};
@@ -333,11 +339,12 @@ export function RegisterForm() {
     // TODO: wire to API
     await new Promise((r) => setTimeout(r, 1500));
     setIsLoading(false);
+    setShowSuccessModal(true);
   };
 
   const handleGoogle = () => {
-    // TODO: wire to Google OAuth
-    console.log("Google sign up");
+    // Show Identity Modal for testing purposes
+    setShowIdentityModal(true);
   };
 
   return (
@@ -413,6 +420,20 @@ export function RegisterForm() {
           </a>
         </p>
       </div>
+
+      <AuthModal
+        isOpen={showSuccessModal}
+        title="Account Created!"
+        description="Your Petad account has been created successfully"
+        buttonText="Proceed To Sign In"
+        onAction={() => navigate("/login")}
+      />
+
+      <IdentityVerificationModal
+        isOpen={showIdentityModal}
+        onClose={() => setShowIdentityModal(false)}
+        onSuccess={() => setShowIdentityModal(false)}
+      />
     </div>
   );
 }
