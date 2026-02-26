@@ -89,7 +89,7 @@ export default function InterestPage() {
     );
   };
 
-  const handleViewDetails = (id: string) => {
+  const handleViewDetails = () => {
     // placeholder for navigation to listing detail page
   };
 

@@ -3,13 +3,13 @@ import FavouritePage from "./pages/FavouritePage";
 import HomePage from "./pages/HomePage";
 import ListingsPage from "./pages/ListingsPage";
 import LoginPage from "./pages/LoginPage";
+import ModalPreview from "./pages/ModalPreview";
 import ProfilePage from "./pages/ProfilePage";
 import RegisterPage from "./pages/RegisterPage";
 import ForgetPasswordPage from "./pages/forgetPasswordPage";
 import InterestPage from "./pages/interestPage";
 import NotificationPage from "./pages/notificationPage";
 import ResetPasswordPage from "./pages/resetPasswordPage";
-
 
 function App() {
   return (
@@ -29,8 +29,10 @@ function App() {
         <Route path="/listings" element={<ListingsPage />} />
         <Route path="/notifications" element={<NotificationPage />} />
 
-        {/* Test Route */}
+        {/* Preview Routes */}
+        <Route path="/preview-modal" element={<ModalPreview />} />
 
+        {/* Test Route */}
       </Routes>
     </BrowserRouter>
   );
